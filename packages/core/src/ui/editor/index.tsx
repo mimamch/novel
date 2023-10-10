@@ -18,7 +18,7 @@ import { Editor as EditorClass, Extensions } from "@tiptap/core";
 import { NovelContext } from "./provider";
 
 export default function Editor({
-  completionApi = "/api/generate",
+  completionApi,
   className = "novel-relative novel-min-h-[500px] novel-w-full novel-max-w-screen-lg novel-border-stone-200 novel-bg-white sm:novel-mb-[calc(20vh)] sm:novel-rounded-lg sm:novel-border sm:novel-shadow-lg",
   defaultValue = defaultEditorContent,
   extensions = [],
@@ -95,6 +95,11 @@ export default function Editor({
     }
   }, debounceDuration);
 
+  // Disabling AI when completionApi di not provided
+  if (!completionApi) {
+    extensions = extensions.filter((ext) => ext.name !== "Continue writing");
+  }
+
   const editor = useEditor({
     extensions: [...defaultExtensions, ...extensions],
     editorProps: {
@@ -106,7 +111,7 @@ export default function Editor({
       const lastTwo = getPrevText(e.editor, {
         chars: 2,
       });
-      if (lastTwo === "++" && !isLoading) {
+      if (lastTwo === "++" && !isLoading && completionApi) {
         e.editor.commands.deleteRange({
           from: selection.from - 2,
           to: selection.from,
