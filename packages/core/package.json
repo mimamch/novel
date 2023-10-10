@@ -1,6 +1,6 @@
 {
-  "name": "novel",
-  "version": "0.1.22",
+  "name": "@mimamch/novel",
+  "version": "0.0.1",
   "description": "Notion-style WYSIWYG editor with AI-powered autocompletions",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
@@ -77,13 +77,13 @@
     "typescript": "^4.9.4"
   },
   "author": "Steven Tey <stevensteel97@gmail.com>",
-  "homepage": "https://novel.sh",
+  "homepage": "https://github.com/mimamch/novel#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/steven-tey/novel.git"
+    "url": "git+https://github.com/mimamch/novel.git"
   },
   "bugs": {
-    "url": "https://github.com/steven-tey/novel/issues"
+    "url": "https://github.com/mimamch/novel/issues"
   },
   "keywords": [
     "ai",
@@ -92,5 +92,8 @@
     "markdown",
     "nextjs",
     "react"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
 }
