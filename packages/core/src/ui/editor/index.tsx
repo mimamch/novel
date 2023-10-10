@@ -95,13 +95,14 @@ export default function Editor({
     }
   }, debounceDuration);
 
-  // Disabling AI when completionApi di not provided
-  if (!completionApi) {
-    extensions = extensions.filter((ext) => ext.name !== "Continue writing");
-  }
-
   const editor = useEditor({
-    extensions: [...defaultExtensions, ...extensions],
+    // Disabling AI when completionApi di not provided
+    extensions: [
+      ...defaultExtensions.filter((ext) =>
+        completionApi ? true : ext.name !== "Continue writing"
+      ),
+      ...extensions,
+    ],
     editorProps: {
       ...defaultEditorProps,
       ...editorProps,
